@@ -1,0 +1,41 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  flyway:
+    enabled: true
+    locations:
+      - classpath:db/migration/auth
+      - classpath:db/migration/user
+      - classpath:db/migration/order
+      - classpath:db/migration/integration
+
+auth:
+  jwt:
+    secret: test-secret-32-bytes-minimum-secret-for-tests-only-do-not-reuse-elsewhere
+    web-access-ttl-minutes: 15
+    mobile-access-ttl-minutes: 60
+    refresh-ttl-days: 30
+    temp-token-ttl-minutes: 5
+    reset-token-ttl-minutes: 10
+  pin:
+    max-failed-attempts: 5
+    lockout-minutes: 30
+  otp:
+    length: 6
+    ttl-minutes: 10
+    resend-cooldown-seconds: 60
+    fixed-code: "791122"
+
+vahan:
+  mock: true
+sarathi:
+  mock: true
+gst:
+  mock: true
+otp:
+  delivery: log
+  log-codes-in-server-logs: true
